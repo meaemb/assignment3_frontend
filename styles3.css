@@ -1,0 +1,168 @@
+/* Wedding Invitations – Flexbox & Grid
+   Author: <Your Name>, Group: <Your Group>
+*/
+:root{
+  --bg:#fff8f5;          /* soft beige */
+  --card:#ffffff;
+  --text:#2a2a2a;
+  --muted:#6f6f6f;
+  --primary:#8B1E3F;     /* burgundy */
+  --accent:#C99A2E;      /* soft gold */
+  --shadow:0 10px 20px rgba(0,0,0,.08);
+  --radius:16px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:"Times New Roman", Times, serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+a{color:var(--primary);text-decoration:none}
+img{max-width:100%;display:block;border-radius:12px}
+
+.wrapper{max-width:1100px;margin:0 auto;padding:24px}
+h1,h2,h3{margin:12px 0 8px}
+p{margin:8px 0 12px;color:var(--muted)}
+hr{border:none;border-top:1px solid #edded8;margin:12px 0}
+
+/* — Task 0: Navigation (Flexbox) — */
+.header{
+  background:var(--card);
+  box-shadow:var(--shadow);
+  border-radius:var(--radius);
+  padding:14px 18px;
+  margin:16px 0 24px;
+}
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+.logo{
+  display:flex;align-items:center;gap:10px;
+  font-weight:bold;font-size:20px;
+}
+.logo-tag{
+  display:inline-grid;place-items:center;
+  width:38px;height:38px;border-radius:10px;
+  background:var(--primary);color:#fff;
+  box-shadow:0 6px 14px rgba(139,30,63,.35);
+  font-size:18px;border:2px solid var(--accent);
+}
+.brand-sub{font-size:14px;color:var(--muted)}
+.nav-links{
+  display:flex;align-items:center;gap:22px;list-style:none;
+}
+.nav-links a{
+  padding:8px 12px;border-radius:10px;
+  transition:transform .15s ease, background .15s ease, box-shadow .15s ease;
+}
+.nav-links a:hover{
+  background:#faeef0;transform:translateY(-1px);
+  box-shadow:0 6px 14px rgba(139,30,63,.18);
+}
+
+/* — Task 1: Card Row (Flexbox) — */
+.card-row{display:flex;gap:18px;align-items:stretch;flex-wrap:wrap}
+.card{
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:14px;
+  flex:1 1 260px;
+  display:flex;flex-direction:column;
+  transition:transform .2s ease, box-shadow .2s ease;
+  border:1px solid #f2e2da;
+}
+.card:hover{
+  transform:translateY(-4px) scale(1.01);
+  box-shadow:0 16px 32px rgba(0,0,0,.12);
+}
+.card h3{margin-top:10px}
+.card .grow{flex:1}
+.btn{
+  display:inline-block;margin-top:10px;padding:10px 14px;border-radius:12px;
+  background:linear-gradient(180deg, var(--primary), #6e1632);
+  color:#fff;border:1px solid var(--accent);
+  box-shadow:0 6px 14px rgba(139,30,63,.35);
+}
+
+/* — Task 2: Grid Areas — */
+.layout{
+  display:grid;
+  grid-template-columns:260px 1fr;
+  grid-template-rows:auto 1fr auto;
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";
+  gap:16px;min-height:80vh;
+}
+.header-area{grid-area:header}
+.sidebar-area{grid-area:sidebar}
+.main-area{grid-area:main}
+.footer-area{grid-area:footer}
+
+.box{
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:16px;border:1px solid #f2e2da;
+}
+.kicker{color:var(--accent);letter-spacing:.06em;text-transform:uppercase;font-size:12px}
+
+/* Responsive */
+@media (max-width:760px){
+  .layout{
+    grid-template-columns:1fr;
+    grid-template-areas:
+      "header"
+      "main"
+      "sidebar"
+      "footer";
+  }
+}
+
+/* — Task 3: Gallery (Grid) — */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(180px,1fr));
+  gap:12px;
+}
+.gallery-item{
+  position:relative;overflow:hidden;border-radius:12px;
+  box-shadow:var(--shadow);border:1px solid #f2e2da;
+}
+.caption{
+  position:absolute;inset:auto 0 0 0;
+  background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.72) 100%);
+  color:#fff;padding:8px 10px;font-size:14px;
+  transform:translateY(100%);transition:transform .2s ease;
+}
+.gallery-item:hover .caption{transform:translateY(0%)}
+
+/* Task 4: Portfolio (Flex + Grid) */
+.portfolio-grid{
+  display:grid;grid-template-columns:1.2fr .8fr;gap:18px;
+}
+.projects{
+  display:grid;grid-template-columns:repeat(auto-fill, minmax(260px,1fr));gap:18px;
+}
+.project-card{
+  background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:14px;display:flex;flex-direction:column;border:1px solid #f2e2da;
+}
+.project-card .grow{flex:1}
+.price{ font-weight:bold; color:var(--primary); margin-top:6px }
+
+.footer-wide{
+  margin-top:18px;background:var(--card);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:16px;text-align:center;border:1px solid #f2e2da;
+}
+
+/* small helpers */
+.muted{color:var(--muted)}
